@@ -14,6 +14,21 @@
   justify-items: center;
   align-items: center;
 }
+#page_main > #section_main > #hero_section {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
+#page_main > #section_main > #hero_section > span {
+  justify-items: center;
+  align-items: center;
+  display: grid;
+  width: 70%;
+}
+#page_main > #section_main > #hero_section > span > img {
+  width: 25%;
+}
 #page_main > #section_main > article {
   display: grid;
   width: 100%;

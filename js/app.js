@@ -6,23 +6,22 @@ let meal_container = document.querySelector(`#section_main`);
 
 meal_container.insertAdjacentHTML(`beforeend`,
 
- `    
+    `    
  <article>
 <span class="main_span">
 
 <button class="clickme">USE API</button>
-<button class="otherbutton">USE API2</button>
+
 </span>
 </article>
 
 
-<section id="hero_section">
-
+<article id="hero_section">
+<div id="meal_filter"> 
 <input type="value" id="meal_input">
-<span id="meal_filter">
-<span>
-
-</section>
+<button class="otherbutton">USE API2</button>
+<div>
+</article>
 `
 
 
@@ -30,7 +29,7 @@ meal_container.insertAdjacentHTML(`beforeend`,
 );
 
 
-function failureFunction(){
+function failureFunction() {
     let meal_container = document.querySelector(`#section_main`);
 
     meal_container.insertAdjacentHTML(`beforeend`, `
@@ -44,7 +43,7 @@ function failureFunction(){
 </span>
 </article>
     `);
-    
+
 };
 
 
@@ -52,16 +51,16 @@ function failureFunction(){
 
 
 
-function successFunction(response){
-let meal_container = document.querySelector(`#section_main`);
+function successFunction(response) {
+    let meal_container = document.querySelector(`#section_main`);
 
 
-for(let counter = 0; counter < response[`data`][`meals`].length; counter = counter +1){
+    for (let counter = 0; counter < response[`data`][`meals`].length; counter = counter + 1) {
 
-    meal_container.insertAdjacentHTML(`beforeend`, 
+        meal_container.insertAdjacentHTML(`beforeend`,
 
 
-    `<article>
+            `<article>
     <span class="main_span_2">
     
     <h3>${response[`data`][`meals`][counter][`strMeal`]}</h3>
@@ -77,9 +76,9 @@ for(let counter = 0; counter < response[`data`][`meals`].length; counter = count
     
     </span>
     </article>`);
-    
 
-}
+
+    }
 
 
 
@@ -91,7 +90,7 @@ for(let counter = 0; counter < response[`data`][`meals`].length; counter = count
 
 
 
-function API(){
+function API() {
 
 
 
@@ -118,15 +117,19 @@ for (let counter = 0; counter < call_api.length; counter = counter + 1) {
 
 
 
-function filter_meal_sucess(response){
+function filter_meal_sucess(response) {
     let meal_filter = document.querySelector(`#meal_filter`);
-    for(let counter = 0; counter < response[`data`][`meals`].length; counter = counter +1){
+    for (let counter = 0; counter < response[`data`][`meals`].length; counter = counter + 1) {
 
         meal_filter.insertAdjacentHTML(`beforeend`, `
         
+        <span>
+
         <h3>${response[`data`][`meals`][counter][`strMeal`]}</h3>
 
         <img src="${response[`data`][`meals`][counter][`strMealThumb`]}">
+
+        </span>
 
 `);
 
@@ -136,7 +139,7 @@ function filter_meal_sucess(response){
 
 };
 
-function filter_meal_error(){
+function filter_meal_error() {
 
 
     let meal_filter = document.querySelector(`#meal_filter`);
@@ -148,15 +151,15 @@ function filter_meal_error(){
 
 function filter_meal_click(details) {
 
-let filter_input = document.querySelector(`#meal_input`);
-let filter_input_value = filter_input[`value`];
-axios.request({
-    url: `https://www.themealdb.com/api/json/v1/1/filter.php`,
+    let filter_input = document.querySelector(`#meal_input`);
+    let filter_input_value = filter_input[`value`];
+    axios.request({
+        url: `https://www.themealdb.com/api/json/v1/1/filter.php`,
 
-    params:{
-        c: filter_input_value
-    }
-}).then(filter_meal_sucess).catch(filter_meal_error)
+        params: {
+            c: filter_input_value
+        }
+    }).then(filter_meal_sucess).catch(filter_meal_error)
 };
 
 
