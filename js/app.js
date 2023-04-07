@@ -14,6 +14,15 @@ meal_container.insertAdjacentHTML(`beforeend`,
 <button class="otherbutton">USE API2</button>
 </span>
 </article>
+
+
+<section id="hero_section">
+
+<input type="value" id="meal_input">
+<span id="meal_filter">
+<span>
+
+</section>
 `
 
 
@@ -106,3 +115,55 @@ for (let counter = 0; counter < call_api.length; counter = counter + 1) {
     call_api[counter].addEventListener(`click`, API);
 };
 
+
+
+
+function filter_meal_sucess(response){
+    let meal_filter = document.querySelector(`#meal_filter`);
+    for(let counter = 0; counter < response[`data`][`meals`].length; counter = counter +1){
+
+        meal_filter.insertAdjacentHTML(`beforeend`, `
+        
+        <h3>${response[`data`][`meals`][counter][`strMeal`]}</h3>
+
+        <img src="${response[`data`][`meals`][counter][`strMealThumb`]}">
+
+`);
+
+    };
+
+
+
+};
+
+function filter_meal_error(){
+
+
+    let meal_filter = document.querySelector(`#meal_filter`);
+
+    meal_filter.insertAdjacentHTML(`beforeend`, `<p>failure</p>`);
+
+}
+
+
+function filter_meal_click(details) {
+
+let filter_input = document.querySelector(`#meal_input`);
+let filter_input_value = filter_input[`value`];
+axios.request({
+    url: `https://www.themealdb.com/api/json/v1/1/filter.php`,
+
+    params:{
+        c: filter_input_value
+    }
+}).then(filter_meal_sucess).catch(filter_meal_error)
+};
+
+
+let meal_button = document.querySelectorAll(`.otherbutton`);
+
+for (let counter = 0; counter < meal_button.length; counter = counter + 1) {
+
+
+    meal_button[counter].addEventListener(`click`, filter_meal_click);
+};
