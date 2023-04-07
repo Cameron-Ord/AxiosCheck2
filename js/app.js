@@ -6,13 +6,15 @@ let meal_container = document.querySelector(`#section_main`);
 
 meal_container.insertAdjacentHTML(`beforeend`,
 
- `<article>
+ `    
+ <article>
 <span class="main_span">
 
 <button class="clickme">USE API</button>
 <button class="otherbutton">USE API2</button>
 </span>
-</article>`
+</article>
+`
 
 
 
@@ -51,13 +53,17 @@ for(let counter = 0; counter < response[`data`][`meals`].length; counter = count
 
 
     `<article>
-    <span class="main_span">
+    <span class="main_span_2">
     
     <h3>${response[`data`][`meals`][counter][`strMeal`]}</h3>
     
     <h6>${response[`data`][`meals`][counter][`strArea`]}</h6>
+
+    <img src="${response[`data`][`meals`][counter][`strMealThumb`]}" width="150px" height="150px">
     
     <p>${response[`data`][`meals`][counter][`strInstructions`]}</p>
+
+
     
     
     </span>
