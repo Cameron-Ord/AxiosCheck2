@@ -10,7 +10,7 @@ meal_container.insertAdjacentHTML(`beforeend`,
 <span class="main_span">
 
 <button class="clickme">USE API</button>
-
+<button class="otherbutton">USE API2</button>
 </span>
 </article>`
 
@@ -44,21 +44,28 @@ function failureFunction(){
 function successFunction(response){
 let meal_container = document.querySelector(`#section_main`);
 
-meal_container.insertAdjacentHTML(`beforeend`, 
+
+for(let counter = 0; counter < response[`data`][`meals`].length; counter = counter +1){
+
+    meal_container.insertAdjacentHTML(`beforeend`, 
 
 
-`<article>
-<span class="main_span">
+    `<article>
+    <span class="main_span">
+    
+    <h3>${response[`data`][`meals`][counter][`strMeal`]}</h3>
+    
+    <h6>${response[`data`][`meals`][counter][`strArea`]}</h6>
+    
+    <p>${response[`data`][`meals`][counter][`strInstructions`]}</p>
+    
+    
+    </span>
+    </article>`);
+    
 
-<h3>${response[`data`][`meals`][0][`strMeal`]}</h3>
+}
 
-<h6>${response[`data`][`meals`][0][`strArea`]}</h6>
-
-<p>${response[`data`][`meals`][0][`strInstructions`]}</p>
-
-
-</span>
-</article>`);
 
 
 };
